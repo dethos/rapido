@@ -1,9 +1,9 @@
 Rapido
 ======
 
-This is a simple app i made while learning the basic principles of meteor.js. 
+This is a simple app i made while was learning the basic principles of meteor.js. 
 
-It uses [Ink Framework](http://ink.sapo.pt/) for front end ( found in `.css` and `/public/fonts`) and [javascript-MD5](https://github.com/blueimp/JavaScript-MD5) lib for hash creations.
+It uses [Ink Framework](http://ink.sapo.pt/) for front end ( found in `.css` and `/public/font`) and [javascript-MD5](https://github.com/blueimp/JavaScript-MD5) lib for hash creation.
 
 See it in action [here](http://rapido.ovalerio.net).
 
@@ -15,7 +15,7 @@ Remove this packages from your meteor app:
 
 Add this ones:
 
- - coffeescript, accounts-ui, accounts-password
+ - coffeescript, backbone, accounts-ui, accounts-password
 
 
 ## Reporting bugs
