@@ -39,7 +39,7 @@ if Meteor.isClient
 
   Template.edit_list_name.current_name = ->
     list = Lists.findOne({ _id: Session.get("list_id")})
-    return if list then list.name else null
+    return if list then list.name else "Loading..."
 
   Template.task_info.selected = ->
     return if Session.equals("selected_task", this._id) then "ink-label info" else ""
