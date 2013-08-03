@@ -48,8 +48,15 @@
 <template name="task_info">
     <tr class="{{selected}}">
         {{#if status}}
-        <td>{{>done}} {{name}}</td>
-        <td><div class="push-right">{{>rename}} {{>remove}}</div></td>
+        <td>{{priority}} {{>done}} {{name}}</td>
+        <td>
+            <div class="push-right">
+                {{>inc_priority}}
+                {{>dec_priority}}
+                {{>rename}} 
+                {{>remove}}
+            </div>
+        </td>
         {{else}}
         <td>{{>undo}} <s>{{name}}</s></td>
         <td><div class="push-right">{{>remove}}</div></td>
@@ -139,4 +146,12 @@
 
 <template name='new'>
     <a><i class="icon-file"></i> New</a>
+</template>
+
+<template name="inc_priority">
+    <i class="icon-angle-up" title="Increase Priority"></i>
+</template>
+
+<template name="dec_priority">
+    <i class="icon-angle-down" title="Decrease Priority"></i>
 </template>

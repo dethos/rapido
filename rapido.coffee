@@ -32,7 +32,7 @@ if Meteor.isClient
   # Data Binding to Template elements
   #
   Template.list_tasks.all = ->
-    return Tasks.find { list_id: Session.get("list_id")}, {sort:{ status:-1 ,date:-1}}
+    return Tasks.find { list_id: Session.get("list_id")}, {sort:{ status:-1, priority:-1 ,date:-1}}
 
   Template.saved_lists.list = ->
     return if Meteor.user() then Lists.find {user_id: Meteor.user()._id} else {}
@@ -67,7 +67,8 @@ if Meteor.isClient
         comments: [{name: "", content:new_event}],
         status: true,
         list_id: Session.get("list_id"),
-        date: date.getTime()
+        date: date.getTime(),
+        priority: 0
       tmpl.find("#newtask").value = ""
       Meteor.call "addTask", newTask, (err, result) ->
         if err
@@ -157,6 +158,14 @@ if Meteor.isClient
         new_event = name + " edited task description!"
         Meteor.call "addEvent", this._id, new_event, (err, result) ->
 
+  Template.inc_priority.events
+    'click': ->
+      Meteor.call 'changePriority', this._id, 1, (err, result) ->
+
+  Template.dec_priority.events
+    'click': ->
+      Meteor.call 'changePriority', this._id, -1, (err, result) ->
+
   Template.edit_list_name.events
     'click': ->
       new_name = prompt "Set a new name for this To Do List"
@@ -239,3 +248,5 @@ Meteor.methods
   addEvent: (task_id, new_event) ->
     new_com = {name: "", content:new_event, date: new Date()}
     return Tasks.update({_id:task_id}, {$push:{comments: new_com}})
+  changePriority: (task_id, inc) ->
+    return Tasks.update({_id:task_id}, {$inc:{priority: inc}})
