@@ -107,6 +107,13 @@ if Meteor.isClient
       else
         alert "You need to be logged in to save lists"
 
+  Template.new.events
+    'click': ->
+      Meteor.call "newList", "Set this ToDo List name.", (err, result) ->
+        if err
+          alert err
+        Session.set "list_id", result
+        router.setList result, true
 
   Template.share.events
     'click': ->

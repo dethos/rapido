@@ -6,7 +6,7 @@
     <div class="ink-grid">
         <nav class="ink-navigation sticky">
         <ul class="menu horizontal rounded white shadowed">
-            <li><a href="/"><i class="icon-file"></i> New</a></li>
+            <li>{{>new}}</li>
             <li>{{>save}}</li>
             <li>{{>share}}</li>
             <li><a><i class="icon-list-alt"></i> My Lists</a>
@@ -135,4 +135,8 @@
 
 <template name="remove_list">
     <i class="icon-remove push-right" title="Remove list and contents"></i>
+</template>
+
+<template name='new'>
+    <a><i class="icon-file"></i> New</a>
 </template>
