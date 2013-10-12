@@ -35,7 +35,7 @@ if Meteor.isClient
     return Tasks.find { list_id: Session.get("list_id")}, {sort:{ status:-1, priority:-1 ,date:-1}}
 
   Template.saved_lists.list = ->
-    return if Meteor.user() then Lists.find {user_id: Meteor.user()._id} else {}
+    return if Meteor.user() then Lists.find {user_id: Meteor.user()._id} else []
 
   Template.edit_list_name.current_name = ->
     list = Lists.findOne({ _id: Session.get("list_id")})
