@@ -32,7 +32,7 @@ Template.edit_list_name.current_name = ->
     return if list then list.name else "Loading..."
 
 Template.task_info.selected = ->
-    return if Session.equals("selected_task", this._id) then "ink-label info" else ""
+    return if Session.equals("selected_task", this._id) then "ink-alert block info" else "ink-alert block"
 
 Template.task_comments.all = ->
     if Session.get("selected_task") != null
@@ -45,6 +45,13 @@ Template.task_comments.all = ->
 #
 # AllUser intereaction events
 #
+Template.mobile_menu_button.events
+    'click': ->
+        if $('#topbar_menu').css('display') == 'block'
+            $('#topbar_menu').css('display', 'none')
+        else
+            $('#topbar_menu').css('display', 'block')
+
 Template.task_form.events
     'submit': (e, tmpl) ->
         e.preventDefault()
@@ -82,7 +89,7 @@ Template.comment_form.events
 
 Template.task_info.events
     'click': ->
-        Session.set("selected_task", this._id)
+        Session.set "selected_task", this._id
 
 Template.saved_lists.events
     'click': ->
