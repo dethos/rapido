@@ -1,0 +1,17 @@
+{
+  "meteor": {},
+  "dependencies": {
+    "basePackages": {
+      "accounts-persona": {
+        "version": "0.1.6"
+      }
+    },
+    "packages": {
+      "accounts-persona": {
+        "git": "https://github.com/vladikoff/meteor-accounts-persona.git",
+        "tag": "v0.1.6",
+        "commit": "5b8110dad901a69f674e6a0381e074567fe1b4d9"
+      }
+    }
+  }
+}
