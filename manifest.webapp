@@ -1,0 +1,11 @@
+{
+    "name": "Rapido",
+    "description": "Create simple and shareable TODO lists",
+    "launch_path": "/",
+    "default_locale": "en",
+    "version": "0.3",
+    "developer": {
+        "name": "Gonçalo Valério",
+        "url": "http://ovalerio.net"
+    }
+}

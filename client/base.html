@@ -1,0 +1,215 @@
+<head>
+    <title>Rapido - rapid and shareable todo lists</title>
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+    <link href="css/ink-min.css" type="text/css" rel="stylesheet"></link>
+    <script>
+        (function() {
+            var t   = document.createElement('script');
+            t.type  = 'text/javascript';
+            t.async = true;
+            t.id    = 'persona-lib';
+            t.src = '//login.persona.org/include.js';
+            var s = document.getElementsByTagName('script')[0];
+            s.parentNode.insertBefore(t, s);
+        })();
+    </script>
+    <script type="text/javascript" src="js/md5.min.js"></script>
+    <script type="text/javascript" src="js/ink.min.js"></script>
+    <script type="text/javascript" src="js/ink.modal.js"></script>
+    <script type="text/javascript" src="js/autoload.js"></script>
+</head>
+
+<body>
+    <nav class="ink-navigation ink-grid hide-all show-large">
+        <ul class="menu horizontal white shadowed">
+            <li>{{>new}}</li>
+            <li>{{>save}}</li>
+            <li>{{>share}}</li>
+            <li><a> <i class="icon-list-alt"> </i> My Lists</a>
+                <ul class="submenu">
+                    {{> saved_lists}}
+                </ul>
+            </li>
+            <li><a class="activityModal"><i class="icon-cogs"></i> Task Activity</a></li>
+            <li><a href="http://blog.ovalerio.net/?p=245"><i class="icon-info"></i> About</a></li>
+            <li class="push-right"><i class="icon-user"></i>{{loginButtons align="right"}}</li>
+        </ul>
+    </nav>
+    <nav class="ink-navigation ink-grid hide-all show-medium show-small">
+        <ul class="menu vertical white">
+            <h3>Rapido {{>mobile_menu_button}}</h3>
+        </ul>
+        <ul id="topbar_menu" class="menu vertical white flat" style="display:none">
+            <li>{{>new}}</li>
+            <li>{{>save}}</li>
+            <li>{{>share}}</li>
+            <li><a><i class="icon-list-alt"></i> My Lists</a>
+                <ul class="submenu">
+                    {{> saved_lists}}
+                </ul>
+            </li>
+            <li><a class="activityModal"><i class="icon-cogs"></i> Task Activity</a></li>
+            <li><a href="http://blog.ovalerio.net/?p=245"><i class="icon-info"></i> About</a></li>
+            <li><a><i class="icon-user">{{loginButtons}}</i></a></li>
+        </ul>
+    </nav>
+    <div class="ink-grid">
+        <div class="vspace">
+            <h2>
+                {{>edit_list_name}}
+                {{>remove_list}}
+            </h2>
+        </div>
+        <div class="column-group gutters">
+            <div class="large-100 small-100">
+                {{> task_form}}
+                {{> list_tasks}}
+            </div>
+        </div>
+        <div class="ink-shade fade">
+            <div class="ink-modal" data-trigger=".activityModal" style="max-width:500px" id="test">
+                <div class="modal-header">{{> comment_form}}</div>
+                <div class="modal-body">
+                    {{> task_comments}}
+                </div>
+                <div class="modal-footer">
+                    <button class="ink-button blue modal-close ink-dismiss push-right">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="hide-small hide-medium">
+    <a href="https://github.com/dethos/rapido"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+    </div>
+    <!-- Piwik Image Tracker -->
+    <img src="http://ovalerio.net/analytics/piwik.php?idsite=4&amp;rec=1" style="border:0" alt="" />
+    <!-- End Piwik -->
+</body>
+
+<template name="mobile_menu_button">
+    <span class="icon-reorder icon-large push-right"></span>
+</template>
+
+<template name="list_tasks">
+    {{#each all}}
+        {{>task_info}}
+    {{/each}}
+</template>
+
+<template name="task_info">
+    <div class="{{selected}}">
+        {{#if status}}
+            {{>remove}}
+            <h4>
+                <div class="button-toolbar">
+                    <div class="button-group">
+                        <h2>{{priority}}</h2>
+                    </div>
+                    <div class="button-group">
+                        {{>inc_priority}} {{>dec_priority}}
+                    </div>
+                    <div class="button-group">
+                        {{>done}} {{>rename}}
+                    </div>
+                </div>
+            </h4>
+            <p>{{name}}</p>
+        {{else}}
+            {{>remove}}
+            <h4> {{>undo}}</h4>
+            <p><s>{{name}}</s></p>
+        {{/if}}
+    </div>
+</template>
+
+<template name="task_form">
+    <form class="ink-form">
+        <div class="control-group">
+            <div class="control">
+                <input id="newtask" type="text" placeholder="Your new task here...">
+            </div>
+        </div>
+    </form>
+</template>
+
+<template name="task_comments">
+    {{#each all}}
+            {{#if name}}
+            <div class="column-group vspace">
+                <div class="large-15" >
+                    <img src="http://www.gravatar.com/avatar/{{pic_hash}}?s=50&d=mm">
+                </div>
+                <div class="large-85" >
+                    <p>{{content}}</p>
+                    <small>{{name}} - {{date}}</small>
+                </div>
+            </div>
+            {{else}}
+            <div class="vspace">
+                <p>{{content}}</p>
+                <small>{{date}}</small>
+            </div>
+            {{/if}}
+    {{/each}}
+</template>
+
+<template name="comment_form">
+    <form class="ink-form">
+        <div class="control-group">
+            <div class="control">
+                <input id="newcomment" type="text" placeholder="Progress feed">
+            </div>
+        </div>
+    </form>
+</template>
+
+<template name="saved_lists">
+    {{#each list}}
+    <li><a>{{name}}</a></li>
+    {{/each}}
+</template>
+
+<template name="edit_list_name">
+    {{current_name}}
+    <i class="icon-edit" title="Edit"></i>
+</template>
+
+<template name="save">
+    <a><i class="icon-save"></i> Save</a>
+</template>
+
+<template name="share">
+    <a><i class="icon-share"></i> Share</a>
+</template>
+
+<template name="done">
+    <button class="ink-button"><i class="icon-ok icon-large" title="Mark as Done"></i></button>
+</template>
+
+<template name="remove">
+    <button class="ink-dismiss">&times;</button>
+</template>
+
+<template name="rename">
+    <button class="ink-button"><i class="icon-edit icon-large" title="Edit"></i></button>
+</template>
+
+<template name="undo">
+    <button class="ink-button"><i class="icon-undo" title="Undo"></i></button>
+</template>
+
+<template name="remove_list">
+    <i class="icon-remove push-right" title="Remove list and contents"></i>
+</template>
+
+<template name='new'>
+    <a><i class="icon-file"></i> New</a>
+</template>
+
+<template name="inc_priority">
+    <button class="ink-button"><i class="icon-angle-up icon-large" title="Increase Priority"></i></button>
+</template>
+
+<template name="dec_priority">
+    <button class="ink-button"><i class="icon-angle-down icon-large" title="Decrease Priority"></i></button>
+</template>
