@@ -17,9 +17,9 @@ Add this ones:
 
  - coffeescript, backbone, accounts-ui, accounts-password
 
-Install [Meteorite](http://oortcloud.github.io/meteorite/) and add persona package:
+Install [Meteorite](http://oortcloud.github.io/meteorite/) and add persona and router packages:
 
-    mrt add accounts-persona
+    mrt add accounts-persona router
 
 ## Reporting bugs
 
