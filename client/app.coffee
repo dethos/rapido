@@ -79,6 +79,8 @@ Template.comment_form.events
             user = Meteor.user()
             if user
                 hash = md5 user.emails[0].address.trim().toLowerCase()
+            else
+                hash = ""
 
             newComment =
                 content: tmpl.find("#newcomment").value,
