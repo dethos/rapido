@@ -76,9 +76,14 @@ Template.comment_form.events
         e.preventDefault()
         task = Session.get("selected_task")
         if task
+            user = Meteor.user()
+            if user
+                hash = md5 user.emails[0].address.trim().toLowerCase()
+
             newComment =
                 content: tmpl.find("#newcomment").value,
-                task: task
+                task: task,
+                hash: hash
 
             tmpl.find("#newcomment").value = ""
             Meteor.call "addComment", newComment, (err, result) ->
