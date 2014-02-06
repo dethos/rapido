@@ -12,8 +12,7 @@ Meteor.methods
     addComment: (comment) ->
         user = Meteor.user()
         if user
-            hash = md5 user.emails[0].address.trim().toLowerCase()
-            new_com = {name:user.username, content:comment.content, pic_hash: hash, date:new Date()}
+            new_com = {name:user.username, content:comment.content, pic_hash: comment.hash, date:new Date()}
         else
             new_com = {name:"Anonymous", content:comment.content, pic_hash: "", date:new Date()}
         return Tasks.update({_id:comment.task}, {$push:{comments:new_com}})
