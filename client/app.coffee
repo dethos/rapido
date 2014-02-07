@@ -42,6 +42,12 @@ Template.task_comments.all = ->
                 return b.date - a.date
         return comments
 
+Template.share_modal.list_link = ->
+    return window.location
+
+Template.share_modal.list_id = ->
+    return Session.get("list_id")
+
 #
 # AllUser intereaction events
 #
@@ -103,6 +109,17 @@ Template.saved_lists.events
         Session.set("list_id", this._id)
         router.setList this._id, true
 
+Template.open.events
+    'click': ->
+        list_id = prompt "Insert the id of the desired list:"
+        if list_id
+            Meteor.call 'checkList', list_id, (err, result) ->
+                if result
+                    Session.set "list_id", result._id
+                    router.setList result._id, true
+                else
+                    alert "A list with that id, does not exist."
+
 Template.save.events
     'click': ->
         if Meteor.user()
@@ -119,10 +136,6 @@ Template.new.events
                 alert err
             Session.set "list_id", result
             router.setList result, true
-
-Template.share.events
-    'click': ->
-        alert "To Do Url: " + window.location
 
 Template.done.events
     'click': ->

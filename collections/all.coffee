@@ -36,3 +36,5 @@ Meteor.methods
         return Tasks.update({_id:task_id}, {$push:{comments: new_com}})
     changePriority: (task_id, inc) ->
         return Tasks.update({_id:task_id}, {$inc:{priority: inc}})
+    checkList: (list_id) ->
+        return Lists.findOne({_id:list_id})

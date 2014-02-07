@@ -4,6 +4,9 @@
     "launch_path": "/",
     "default_locale": "en",
     "version": "0.3",
+    "icons": {
+        "128": "/img/temp-128.png"
+    },
     "developer": {
         "name": "Gonçalo Valério",
         "url": "http://ovalerio.net"
