@@ -15,7 +15,7 @@
     </script>
     <script type="text/javascript" src="js/md5.min.js"></script>
     <script type="text/javascript" src="js/ink.min.js"></script>
-    <script type="text/javascript" src="js/ink.modal.js"></script>
+    <script type="text/javascript" src="js/ink-ui.min.js"></script>
     <script type="text/javascript" src="js/autoload.js"></script>
 </head>
 
@@ -79,7 +79,18 @@
                 </div>
             </div>
         </div>
-        {{>share_modal}}
+        <div class="ink-shade fade">
+            <div class="ink-modal" data-trigger=".shareModal" style="max-width:500px; max-height:250px" id="share-modal">
+                <div class="modal-header"><h3>Share references:</h3></div>
+                <div class="modal-body">
+                    {{>share_modal}}
+                </div>
+                <div class="modal-footer">
+                    <button class="ink-button blue modal-close ink-dismiss push-right">Close</button>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="hide-small hide-medium">
     <a href="https://github.com/dethos/rapido"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
@@ -218,18 +229,8 @@
 </template>
 
 <template name="share_modal">
-    <div class="ink-shade fade">
-        <div class="ink-modal" data-trigger=".shareModal" style="max-width:500px; max-height:250px" id="share-modal">
-            <div class="modal-header"><h3>Share references:</h3></div>
-            <div class="modal-body">
-                <p>Link: <input value="{{list_link}}"></input></p>
-                <p>Id: <input value="{{list_id}}"></input></p>
-            </div>
-            <div class="modal-footer">
-                <button class="ink-button blue modal-close ink-dismiss push-right">Close</button>
-            </div>
-        </div>
-    </div>
+    <p>Link: <input value="{{list_link}}"></input></p>
+    <p>Id: <input value="{{list_id}}"></input></p>
 </template>
 
 <template name="open">
