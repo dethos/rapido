@@ -1,6 +1,6 @@
 fs = Npm.require 'fs'
 path = Npm.require 'path'
-__dirname = path.resolve '../../../'#'../../../../../'
+__dirname = path.resolve '../public'#'../../../../../'
 
 Accounts.config
     sendVerificationEmail: true,
