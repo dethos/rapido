@@ -5,7 +5,10 @@
     "default_locale": "en",
     "version": "0.3",
     "icons": {
-        "128": "/img/temp-128.png"
+        "32": "/img/temp-32.png",
+        "60": "/img/temp-60.png",
+        "128": "/img/temp-128.png",
+        "256": "/img/temp-256.png"
     },
     "developer": {
         "name": "Gonçalo Valério",
