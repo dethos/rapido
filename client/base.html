@@ -45,8 +45,9 @@
             <li>{{>open}}</li>
             <li>{{>save}}</li>
             <li><a class="shareModal"><i class="icon-share"></i> Share</a></li>
-            <li><a><i class="icon-list-alt"></i> My Lists</a>
-                <ul class="submenu">
+            <li>
+                <a class="toggle" data-target=".submenu"><i class="icon-list-alt"></i> My Lists</a>
+                <ul class="submenu dropdown" style="display: none;">
                     {{> saved_lists}}
                 </ul>
             </li>
@@ -191,7 +192,7 @@
 
 <template name="saved_lists">
     {{#each list}}
-    <li><a>{{name}}</a></li>
+    <li><a> - {{name}}</a></li>
     {{/each}}
 </template>
 
