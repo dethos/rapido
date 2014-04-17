@@ -33,7 +33,7 @@
             </li>
             <li><a class="activityModal"><i class="icon-cogs"></i> Task Activity</a></li>
             <li><a href="http://blog.ovalerio.net/?p=245" target="_blank" ><i class="icon-info"></i> About</a></li>
-            <li class="push-right"><i class="icon-user"></i>{{loginButtons align="right"}}</li>
+            <li class="push-right"><i class="icon-user"></i>{{> loginButtons align="right"}}</li>
         </ul>
     </nav>
     <nav class="ink-navigation ink-grid hide-all show-medium show-small">
@@ -53,7 +53,7 @@
             </li>
             <li><a class="activityModal"><i class="icon-cogs"></i> Task Activity</a></li>
             <li><a href="http://blog.ovalerio.net/?p=245" target="_blank"><i class="icon-info"></i> About</a></li>
-            <li><a><i class="icon-user">{{loginButtons}}</i></a></li>
+            <li><a><i class="icon-user">{{> loginButtons align="right"}}</i></a></li>
         </ul>
     </nav>
     <div class="ink-grid">
@@ -242,8 +242,8 @@
 </template>
 
 <template name="share_modal">
-    <p>Link: <input value="{{list_link}}"></input></p>
-    <p>Id: <input value="{{list_id}}"></input></p>
+    <p>Link: <input value="{{list_link}}"/> </p>
+    <p>Id: <input value="{{list_id}}"/></p>
 </template>
 
 <template name="open">
